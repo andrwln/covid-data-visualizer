@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import TotalsSummary from './components/TotalsSummary';
+import Locations from './components/Locations';
+import covidAPI from './api';
+import { SummaryContainer } from './styles';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [countryData, setCountryData] = useState({});
+    useEffect(() => {
+        async function fetchCountryData() {
+          const data = await covidAPI.fetchDataAllCountries();
+          console.log('Country data : ', data);
+          setCountryData(data);
+        }
+        fetchCountryData();
+    }, []);
+    return countryData.length ? (
+        <div className="container">
+            <SummaryContainer>
+              Totals
+              {/* <TotalsSummary totals={latest} /> */}
+            </SummaryContainer>
+            <Locations locations={countryData} />
+        </div>
+    ) : null;
 }
 
 export default App;
