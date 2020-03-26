@@ -6,8 +6,8 @@ function LocationSummary({ location }) {
         <div>
             <br />
             <div>{location.countryregion}</div>
-            <TotalsSummary totals={location} />
-            {location.countrycode && <a href={`/location/${location.countrycode.iso2}`}>See details</a>}
+            <TotalsSummary totals={ location } />
+            {location.countrycode && <a href={ `/location/${location.countrycode.iso2}` }>See details</a>}
         </div>
     );
 }

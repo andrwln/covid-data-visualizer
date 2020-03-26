@@ -7,8 +7,8 @@ function Locations({ locations }) {
         <LocationsContainer>
             {locations.map((location, idx) => {
                 return (
-                    <LocationContainer key={`location-${idx}`}>
-                        <LocationSummary location={location} />
+                    <LocationContainer key={ `location-${idx}` }>
+                        <LocationSummary location={ location } />
                     </LocationContainer>
                 );
             })}

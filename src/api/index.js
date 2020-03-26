@@ -26,7 +26,13 @@ const covidAPI = {
     fetchDataByCountry: async function(countryCode) {
         // https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest?iso2=US&onlyCountries=true
         const url = `https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/latest?iso2=${countryCode}&onlyCountries=true`;
-        return await this._fetch(url);
+        const data = await this._fetch(url);
+        return data[0];
+    },
+    fetchTimeSeriesByCountry: async function(countryCode) {
+        const url = `https://wuhan-coronavirus-api.laeyoung.endpoint.ainize.ai/jhu-edu/timeseries?iso2=${countryCode}&onlyCountries=true`;
+        const data = await this._fetch(url);
+        return data[0].timeseries;
     },
     fetchAllLocationsData: async function(withTimelines = false) {
         const timeline = withTimelines ? '1' : '0';
