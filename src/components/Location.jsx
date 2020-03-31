@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LocationSummary from './LocationSummary';
 import LineChart from './LineChart';
 import covidAPI from '../api';
-import { generateLineChartData } from '../utils/chartUtils';
+import { generateLineChartData } from '../utils';
 
 const Location = (props) => {
     const countryCode = props.match.params.id;

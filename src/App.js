@@ -6,7 +6,7 @@ import covidAPI from './api';
 import { SummaryContainer } from './styles';
 
 function App() {
-    const [countryData, setCountryData] = useState({});
+    const [countryData, setCountryData] = useState(null);
     useEffect(() => {
         async function fetchCountryData() {
             const data = await covidAPI.fetchDataAllCountries();
@@ -15,14 +15,14 @@ function App() {
         }
         fetchCountryData();
     }, []);
-    return countryData.length ? (
+    return countryData && countryData.countries ? (
         <div className='container'>
             <SummaryContainer>
-                Totals
-                {/* <TotalsSummary totals={latest} /> */}
+                Worldwide Totals
+                <TotalsSummary totals={ countryData.totals } />
             </SummaryContainer>
-            {/* <Locations locations={ countryData } /> */}
-            <CountriesTable countries={ countryData } />
+            <CountriesTable countries={ countryData.countries } />
+            <Locations locations={ countryData.countries } />
         </div>
     ) : null;
 }

@@ -15,3 +15,7 @@ export function generateLineChartData(timeseries) {
         },
     };
 }
+
+export function getRateAsPercentage(rate) {
+    return rate.toFixed(2) + '%';
+}
